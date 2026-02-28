@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Priyanka ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff7b7b;
+            --soft-white: #fffafa;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--soft-white);
+            font-family: 'Quicksand', sans-serif;
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND WITH TRANSLUCENCY --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            /* This linear gradient creates the translucent/faded effect */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://i.postimg.cc/zBcbQLKd/IMG_2514.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3.5rem, 12vw, 5.5rem); margin: 0; }
+        
+        .collage {
+            width: 250px;
+            max-width: 80%;
+            margin: -50px auto 20px auto; /* Pulls it slightly up into the hero section */
+            border: 8px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: rotate(-3deg);
+            position: relative;
+            z-index: 5;
+        }
+
+        .proposal-section { 
+            padding: 100px 20px; 
+            background: white; 
+            position: relative;
+        }
+
+        .question { 
+            font-size: 2rem; 
+            margin-bottom: 50px; 
+            color: #d63384; 
+            font-family: 'Dancing Script'; 
+            font-weight: bold;
+        }
+        
+        /* --- FIXED BUTTON LAYOUT --- */
+        .btn-container { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 20px;
+            min-height: 150px; /* Space for the button to jump around */
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-yes { 
+            background-color: var(--primary-pink); 
+            color: white; 
+            z-index: 10; 
+        }
+
+        .btn-no { 
+            background-color: #f0f0f0; 
+            color: #666; 
+            z-index: 9;
+        }
+        
+        #celebration { display: none; margin-top: 30px; animation: fadeIn 1.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .heart-particle {
+            position: fixed;
+            bottom: -2vh;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+            z-index: 100;
+        }
+        @keyframes floatUp {
+            to { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        footer { padding: 40px; font-size: 0.8rem; color: #bbb; background: white; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Hi Priyanka</h1>
+        <p style="font-size: 1.3rem; font-weight: 300; letter-spacing: 1px;">I have a question for you...</p>
+    </div>
+
+    <div class="proposal-section">
+        <img src="https://i.postimg.cc/s1FBVtnQ/Beige_Neutral_Polaroid_Collage_Happy_Birthday_Instagram_Post.png" alt="Our Memories" class="collage">
+        
+        <div class="question">Priyanka, will you go on a date with me?</div>
+        
+        <div class="btn-container">
+            <button class="btn btn-yes" onclick="showLove()">YES! ❤️</button>
+            <button id="noBtn" class="btn btn-no" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+
+        <div id="celebration">
+            <h2 style="font-family: 'Dancing Script'; font-size: 3rem; color: var(--primary-pink);">Yay! Best decision ever! 😊</h2>
+            <p>I can't wait to see you. Jai is the luckiest!</p>
+            <div style="font-size: 2.5rem; margin-top: 20px;">🌹 🥂 ✨</div>
+        </div>
+    </div>
+
+    <footer>
+        Hand-coded for Priyanka by Jai <br>
+        2026
+    </footer>
+
+    <script>
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            // Ensures the button moves within the visible screen area
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 40) + 20;
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 40) + 20;
+            
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function showLove() {
+            document.getElementById('celebration').style.display = 'block';
+            document.querySelector('.btn-container').style.display = 'none';
+            document.querySelector('.collage').style.transform = 'rotate(0deg) scale(1.1)';
+            document.querySelector('.question').style.display = 'none';
+            
+            const interval = setInterval(createHeart, 150);
+            setTimeout(() => clearInterval(interval), 5000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = ['❤️','💖','🌸','✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
