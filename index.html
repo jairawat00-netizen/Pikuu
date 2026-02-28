@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Priyanka ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff7b7b;
+            --soft-white: #fffafa;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--soft-white);
+            font-family: 'Quicksand', sans-serif;
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://i.postimg.cc/zBcbQLKd/IMG_2514.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3.5rem, 12vw, 6rem); margin: 0; }
+        
+        /* --- POLAROID COLLAGE --- */
+        .collage {
+            width: 280px;
+            margin: 20px auto;
+            border: 10px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+        }
+        .collage:hover { transform: rotate(0deg) scale(1.05); }
+
+        .proposal-section { padding: 60px 20px; background: white; min-height: 400px; }
+        .question { font-size: 2.2rem; margin-bottom: 40px; color: #d63384; font-family: 'Dancing Script'; }
+        
+        /* --- INTERACTIVE BUTTONS --- */
+        .btn-container { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            height: 100px;
+            align-items: flex-start;
+        }
+        .btn {
+            padding: 15px 45px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-yes { background-color: var(--primary-pink); color: white; z-index: 10; }
+        .btn-no { 
+            background-color: #eee; 
+            color: #888; 
+            position: absolute; 
+            left: 55%; /* Start next to Yes */
+        }
+        
+        #celebration { display: none; margin-top: 30px; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .heart-particle {
+            position: fixed;
+            bottom: -2vh;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+            z-index: 100;
+        }
+        @keyframes floatUp {
+            to { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        footer { padding: 40px; font-size: 0.9rem; color: #888; background: white; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Hi Priyanka</h1>
+        <p style="font-size: 1.5rem;">I have something to ask you...</p>
+    </div>
+
+    <div class="proposal-section">
+        <img src="https://i.postimg.cc/s1FBVtnQ/Beige_Neutral_Polaroid_Collage_Happy_Birthday_Instagram_Post.png" alt="Our Memories" class="collage">
+        
+        <div class="question">"Priyanka, will you go on a date with me?"</div>
+        
+        <div class="btn-container">
+            <button class="btn btn-yes" onclick="showLove()">YES! ❤️</button>
+            <button id="noBtn" class="btn btn-no" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+
+        <div id="celebration">
+            <h2 style="font-family: 'Dancing Script'; font-size: 3.5rem; color: var(--primary-pink);">I knew you'd say yes! 😊</h2>
+            <p style="font-size: 1.2rem;">Jai is officially the luckiest guy.</p>
+            <div style="font-size: 3rem; margin-top: 20px;">✨ 🍕 🎬 🥂 ✨</div>
+        </div>
+    </div>
+
+    <footer>
+        Hand-crafted with love by Jai <br>
+        © 2026 | Our Story Starts Here
+    </footer>
+
+    <script>
+        // --- THE RUNAWAY BUTTON LOGIC ---
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            // Calculate random positions within the container
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            const y = Math.random() * (200); // Keep it within a reasonable vertical range
+            
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // --- CELEBRATION LOGIC ---
+        function showLove() {
+            document.getElementById('celebration').style.display = 'block';
+            document.querySelector('.btn-container').style.display = 'none';
+            document.querySelector('.question').innerText = "Best decision ever! ❤️";
+            document.getElementById('noBtn').style.display = 'none';
+            
+            const interval = setInterval(createHeart, 150);
+            setTimeout(() => clearInterval(interval), 4000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = ['❤️','💖','✨','🌸'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
